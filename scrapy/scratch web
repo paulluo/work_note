@@ -1,0 +1,92 @@
+#!/usr/bin/env python
+        #-*-coding:utf-8-*-
+
+        #---------------------------------------  
+        #   程序：奇虎360新闻爬虫
+        #   文件名：Qihoo360.py
+        #   作者：sysublackbear
+        #   日期：2014-03-30  
+        #   语言：Python
+    #   功能：将360中的新闻，链接及摘要输出并且保存到本地文件    
+#---------------------------------------  
+
+import urllib2
+import urllib
+import re
+import string
+from bs4 import BeautifulSoup
+
+
+
+    #定义新闻的标签
+tags = ['china','world','mil','ent','sports',\
+            'internet','tech','finance','house','auto','edu','game',\
+            'lady','health','society']
+
+class Qihoo360News:
+        #构造函数
+        def __init__(self):
+            self.start = 1   #默认开始从第一页开始
+            self.end = 5 #默认结束页还是1
+
+        #把某一页的标题和连接都放到字典上
+        def getPage(self,tag,start,end):
+            if tag not in tags:
+                print '你所找的类别不存在!'
+                return 
+            if end > 5:
+                end = 5
+            url = "http://sh.qihoo.com/"+tag+"/"
+            intro = '以下是'+tag+'抓取的结果'
+            print intro
+            for i in range(start,end+1):
+               # f = open('/home/dzhwen/python文件/Homework/urllib/qihoo/qihoo_'+tag+'_page_'+str(i)+'.txt','w+')
+                f = open('D:/Project/AI/test/test_'+tag+'_page_'+str(i)+'.txt','w+')
+                id = '第'+str(i)+'页'
+                print id.center(40)
+                f.write(id.center(40)+'\n')
+                if i == 1:
+                    myurl = url + "index.html"
+                else:
+                    myurl = url + "index_" + str(i) + ".html"
+                Response = urllib2.urlopen(myurl)
+                Page = Response.read()
+                myItems = re.findall('<div class="hd">.*?<h2><a href="(.*?)" target="_blank">(.*?)</a></h2>.*?<div class="bd">.*?<p>(.*?)<a',Page,re.S)
+                #其中,re.S为多行匹配模式
+                #输出同时写入文本
+
+                ###test the soup#####
+                temp = '*******************************************'
+                for item in myItems:
+                    print temp
+                    f.write(temp + '\n')
+                    print '标题:',item[1]
+                    f.write('标题:'+item[1]+'\n')
+                    print 'From:',item[0]
+                    f.write('From:'+item[0]+'\n')
+                    print '摘要:',item[2]
+                    f.write('摘要:'+item[2]+'\n')
+                    print temp
+                f.close()
+            soup = BeautifulSoup(Page)
+            str = soup.get_text()
+            print 'test test',str
+
+if __name__ == '__main__':
+        qihoo = Qihoo360News()
+        menu="""
+     请选择要抓取的类别：
+     1——国内；2——国际；3——军事；4——娱乐；5——体育；6——互联网；7——科技；8——财经；
+     9——房产；10——汽车；11——教育；12——游戏；13——女性；14——健康；15——社会；
+     或者：？（慎用！！）
+    一键全抓取？？(A)
+     """
+        print menu
+        tag = raw_input("请选择:")
+        if tag != 'A':
+            start = raw_input("请选择开始页数(1——5）：")
+            end = raw_input("请选择结束页数(1——5）:")
+            qihoo.getPage(tags[int(tag)-1],int(start),int(end))
+        else:
+            for item in tags:
+                qihoo.getPage(item,1,5)  
