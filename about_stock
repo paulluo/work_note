@@ -2,5 +2,6 @@
 量化社区：https://uqer.io/community/
 http://yucezhe.com/product/data#!?series=others
 http://tushare.waditu.com/
+pip install --user numpy scipy matplotlib jupyter pandas sympy nose
 
 
