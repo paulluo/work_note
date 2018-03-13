@@ -3,5 +3,7 @@
 http://yucezhe.com/product/data#!?series=others
 http://tushare.waditu.com/
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --user numpy scipy matplotlib jupyter pandas sympy nose
+sudo rm /var/lib/apt/lists/* -vf
+sudo apt-get update
 
 
