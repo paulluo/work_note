@@ -5,5 +5,5 @@ http://tushare.waditu.com/
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --user numpy scipy matplotlib jupyter pandas sympy nose
 sudo rm /var/lib/apt/lists/* -vf
 sudo apt-get update
-
+http://blog.sina.com.cn/s/articlelist_1671917891_0_1.html  ### about stock compute
 
