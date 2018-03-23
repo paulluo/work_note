@@ -7,3 +7,26 @@ sudo rm /var/lib/apt/lists/* -vf
 sudo apt-get update
 http://blog.sina.com.cn/s/articlelist_1671917891_0_1.html  ### about stock compute
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Plan  of tushare
+1:获取完整stock 数据使用jason或者csv格式，以每一个stock一个文件
+2：通过文件每天update 数据(append或者assign)
+3: 进行training,首先是红小兵，红日柱子扫描（对于sh大盘，以及cyb大盘如何配合目前还是看人工
+
+
