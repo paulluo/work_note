@@ -1,1 +1,264 @@
 
+#!/usr/local/bin/python
+#python 
+#df1[['open','volume']]
+#!/usr/bin/env python
+##http://pandas.pydata.org/pandas-docs/stable/api.html#dataframe
+
+import numpy as np
+import pylab as pl
+import os
+import sys
+import pandas as pd
+import tushare as ts
+
+#cal,day percent of number:
+#{
+
+#code = '300601';
+#df=ts.get_k_data(code, ktype='D');df1=df[['date','open','close','volume']].tail(15);
+#searil_day_per = ((df1['close']-df1['open'])/df1['open'])*100;
+#close_per = (df1['close'].pct_change())*100;
+#df1=df1.assign(change_per=searil_day_per);
+#df1=df1.assign(close_pencent=close_per);#df1[['date'],['close_per'],['searil_day_per'],['open'],['close'],['volume']]
+
+#xx=0;YY=0;
+#while (xx < 15)
+#	xx+=1
+#	if (df1['close_per'][XX] > 0)
+ #         YY+=1;
+#x3 = np.arange(15);
+#pl.plot(x3,searil_day_per,'o');pl.show();
+#}
+
+#
+#
+#
+#####################################################################################################
+def test_python_programe(input_1, ar):	
+	print 'this is argc input:',input_1,ar
+	df = pd.read_csv('test_programe')
+	total_entry= 10
+	df = df.tail(total_entry)
+
+#	print df.tail(2)
+#	print df.info()
+	x=0
+	y=0
+	t=0xFF
+	#and df.notna() 
+	while (x < 10) :
+		#print df.iat[x,6]
+		if (df.iat[x,6] > 0 ):
+			y+=1
+			print 'plus++',df.iat[x,6]
+		else:
+			print 'minus--',df.iat[x,6] 
+		x+=1
+	t = (y*1.0/total_entry)*100
+	
+	if (t >= 70.0):
+		print 'End count of Plus benifit and percent%d and,%f'%(y,t)
+
+#####################################################################################################
+
+
+
+#####################################################################################################
+def Get_all_daily():
+	df=ts.get_today_all()
+	date='daily'
+	#if(df.notna()):
+	#	df.to_json(date)
+	df1=df.code
+	df1.to_json(date)
+
+#####################################################################################################
+def process_data_to_percent(df):
+	df1=df[['date','open','close','volume']]
+	serial_day_per = ((df1['close']-df1['open'])/df1['open'])*100;
+	close_per = (df1['close'].pct_change())*100;
+	df1=df1.assign(change_per=serial_day_per);
+	df1=df1.assign(close_pencent=close_per);
+	
+	while (x < 16) :
+		#print df.iat[x,6]
+		if (df1.iat[x,6] > 0 ):
+			y+=1
+			#print 'plus++',df.iat[x,6]
+		#else:
+			#print 'minus--',df.iat[x,6]
+		x+=1
+	t = (y*1.0/total_entry)*100 #t = (y*1.0/total_entry)*100
+	if (t >= 70.0):
+		return df.code
+#####################################################################################################
+def Get_two_week_increase():
+	day_count=16	
+	code_count=2000
+	date='daily'
+	df =pd.read_json(date)
+	serial = df.code
+	x=0
+	while (x < code_count):
+		code=serial[x]
+		df1=ts.get_k_data(code,start='2018-01-01', ktype='D')
+		df1.to_json(code)
+		df1=df1.tail(day_count)
+ 		process_data_to_percent(df1)
+
+#####################################################################################################
+#############fine after debug
+def daily_analyse_function(df_daily,date,name):
+	
+	df = pd.read_csv(name)
+	
+	df1 = df[['date','open','close','volume']]
+	
+	serial_day_per = ((df1['close']-df1['open'])/df1['open'])
+	close_per = (df1['close'].pct_change());
+	df1=df1.assign(change_per=serial_day_per);
+	df1=df1.assign(close_pencent=close_per);	
+
+	used_entry= 5
+	total_entry = used_entry
+	df_used =df1.tail(used_entry)
+	x=0
+	y=0
+	t=0
+	while (x < used_entry) :
+		if (df_used.iat[x,4] > 0 ):
+			y+=1
+			#print 'plus++',df_used.iat[x,4]
+		#else:
+			#print 'minus--',df_used.iat[x,4]
+			#continue
+
+		x+=1
+	t = (y*1.0/total_entry)*100
+	#print "plus++ =%d,percent %f"%(y,t)
+
+	if (t > 90):
+		print'excellent ',t;
+	elif (t > 80):
+		print'good_plus',t
+	elif(t > 70):
+		print'good',t
+	else:
+		print 'not good',t
+
+	df1 = df1.assign(plus_percent=t)
+	code_serial = df.code[total_entry]
+	df1 = df1.assign(code =code_serial)
+	app='analyse'
+	list_str = [name,app]
+	df1.to_csv(''.join(list_str))
+	
+		
+
+
+#####################################################################################################
+######ok get k data##############
+def get_code_day_data(code,file_typ):
+	name =str(code)
+
+	file_type= str(file_typ)
+	if (file_type =='day'):
+		k_type = 'D'
+	if (file_type =='60'):
+		k_type = '60'
+	if (file_type =='30'):
+		k_type = '30'
+	if (file_type =='15'):
+		k_type = '15'
+	if (file_type =='5'):
+		k_type = '5'
+	else:
+		k_type = 'D'	
+
+	df = ts.get_k_data(name,start='2018-01-01',ktype=k_type)
+	file_type= str(file_typ)
+	name_list =[name,'_',file_type]#'./data_dir/',
+	
+	print 'name',''.join(name_list)
+	
+	if (os.path.exists(name)) is False:
+		os.mkdir(name)
+	file_name = ''.join(name_list)
+	name_list = [name,'/',file_name]	
+	file_path = ''.join(name_list)
+	print 'file_path',''.join(name_list)
+
+	df.to_csv(file_path)
+#####################################################################################################
+####not debug
+def append_list_to_file(file_name,df_save):
+	df =pd.read_csv(file_name)
+	ser_list=[df_save.code,df_save.serial_day_per,df_save.close_pencent,df_save.plus_percent]
+	df.append(ser_list)
+	df.to_csv(file_name)
+
+#####################################################################################################
+####ok fine ##############
+def get_file_name_list():
+	file_name='all'  #all_code,all
+	df =pd.read_csv(file_name)
+	df1= df[['code','name']]
+	return df1
+
+
+
+###########################################################################################################
+def join_str_to_name(str1,str2,str3):
+	
+	if str1 is None:
+		os.mkdir(str(str1))
+	if str2 is None:
+		return ''.joinstr(str1)
+	else:
+		ser = (str(str1),str(st2))
+		if str2 is None:		
+			return '/'.join(ser)
+		
+			
+
+
+
+#####################################################################################################
+###                Main function and entry
+#####################################################################################################
+if __name__ == '__main__':
+	
+	menu="This is for test python"
+	print menu
+
+	file_name_list =get_file_name_list()
+	list_shape =file_name_list.shape#get x and y count
+
+	x=0;
+	while (x < 5):#list_shape[0]
+		#(file_name_list.iat[x,0] != None):
+		date_type = '60'
+		get_code_day_data(file_name_list.iat[x,0],date_type)#_60
+		file_name = str(file_name_list.iat[x,0])
+		file_name_code_day_list=[file_name,'_',date_type]
+		name =''.join(file_name_code_day_list)
+		path_list = (file_name,name)
+		daily_analyse_function(0,0,'/'.join(path_list));
+		#print 'file %d,code=%s, name=%s,count=%d'%(x,file_name_list.iat[x,0],file_name_list.iat[x,1],list_shape[0])
+		x+=1
+
+	print 'end of training'
+
+#	daily_analyse_function(0,0,'002864_day');
+
+
+
+
+
+
+
+
+
+
+
