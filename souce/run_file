@@ -1,1 +1,35 @@
 
+#!/usr/local/bin/python
+#python 
+#!/usr/bin/env python
+##http://pandas.pydata.org/pandas-docs/stable/api.html#dataframe
+
+#export http_proxy=
+#exports http_proxy=
+
+import numpy as np
+#import pylab as pl
+import os
+import sys
+import pandas as pd
+import tushare as ts
+
+if __name__ == '__main__':
+	menu="this is the main function"
+
+	print menu
+	#for arg in sys.argv:  
+    		#print arg
+
+ 	code_arg = sys.argv[1]
+	type_arg = sys.argv[2]
+	start_date =""
+	end_date=""
+	if (len(sys.argv) > 5):
+		start_date = str(sys.argv[3])
+		end_date = str(sys.argv[4])
+	print "%s,st=%s,en=%s, %s"%(str(sys.argv[1]),start_date,end_date,str(sys.argv[2]))
+
+	df = ts.get_k_data(str(code_arg),start=start_date,end=end_date,ktype=str(type_arg))
+
+	print df.tail(5)
