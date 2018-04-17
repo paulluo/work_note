@@ -22,7 +22,7 @@ sys.setdefaultencoding('utf-8')
 
 
 
-
+https://pandas-datareader.readthedocs.io/en/latest/remote_data.html#world-bank
 
 
 
