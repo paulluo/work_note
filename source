@@ -252,7 +252,9 @@ if __name__ == '__main__':
 
 #	daily_analyse_function(0,0,'002864_day');
 
+###########################
 
+df.set_index('date')
 
 
 
