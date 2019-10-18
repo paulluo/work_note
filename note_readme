@@ -12,3 +12,26 @@ http://www.aaronsw.com/2002/html2text/ 分析网页文本
 
 2019-10-15:  attention training:
 https://kexue.fm/archives/4765/comment-page-5#comments
+2：数学公式
+Markdown笔记：写数学公式方法
+这里简单记录一下在markdown中书写数学公式的方法。就像Stackoverflow上的经常有的挺漂亮的公式，其生成的不是图片，而MathJax引擎，
+在Markdown中添加MathJax引擎也很简单，添加如下代码到markdown代码中即可：
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$ 
+
+3：HMM：
+http://www.52nlp.cn/hmm-learn-best-practices-four-hidden-markov-models  ；；；
+http://hunch.net/?cat=30  机器学习theory
+
+
+4：bert实现的练习:https://github.com/google-research/bert/
+	简单使用例子：https://github.com/lingyixia/BertUsage;
+  	
+一：my colab
+https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/images/cnn.ipynb?hl=zh-CN#scrollTo=L9YmGQBQPrdn
+    google bert colab:https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/bert_finetuning_with_cloud_tpus.ipynb
+	
+5:资料：
+NLP中文论文csdn https://blog.csdn.net/ljp1919    (xlnet论文翻译)	
+			xlnet；解析 https://juejin.im/post/5d0d17e551882532cf35e271
+		NLP历史进展：https://zhuanlan.zhhu.com/p/80217404
