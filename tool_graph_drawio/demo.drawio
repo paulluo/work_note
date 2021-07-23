@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-23T16:26:15.857Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="DXCUw6r3nU_BqjVf6KTF" version="14.8.5" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-23T17:22:42.266Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="Rbid5Zuv1PCdRm0JmL_0" version="14.8.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2048" dy="644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -214,6 +214,9 @@
         </mxCell>
         <mxCell id="WBc0R5OP1oCIVcgwW8ig-4" value="bus_Match name" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="-480" y="320" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="WBc0R5OP1oCIVcgwW8ig-5" value="&lt;span style=&quot;color: rgb(77 , 77 , 77) ; font-family: &amp;quot;verdana&amp;quot; , &amp;quot;arial&amp;quot; , &amp;quot;helvetica&amp;quot; , sans-serif ; font-size: 16px ; background-color: rgb(254 , 254 , 242)&quot;&gt;platform_driver_register——&amp;gt;driver_register——&amp;gt;bus_add_driver——&amp;gt;driver_attach——&amp;gt;bus_for_each_dev——&amp;gt;__driver_attach——&amp;gt;driver_match_device——&amp;gt;drv-&amp;gt;bus-&amp;gt;match——&amp;gt;(*match)(struct device *dev, struct device_driver *drv);&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-720" y="490" width="520" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
