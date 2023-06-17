@@ -42,3 +42,13 @@ NLP中文论文csdn https://blog.csdn.net/ljp1919    (xlnet论文翻译)
    https://github.com/jwasham/coding-interview-university/blob/main/translations/README-cn.md#%E6%8E%92%E5%BA%8Fsorting
 https://github.com/jwasham/coding-interview-university/blob/main/translations/README-cn.md
 os:https://www.youtube.com/channel/UCVAiwWLivClzuO-Oh9VmA-w/videos
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////LLM list///////////////////////////////
+1:中文开发大模型
+https://github.com/FlagAI-Open/FlagAI/blob/master/examples/Aquila/README.md
+Aquila语言大模型在技术上继承了GPT-3、LLaMA等的架构设计优点，替换了一批更高效的底层算子实现、重新设计实现了中英双语的tokenizer，
+升级了BMTrain并行训练方法，在Aquila的训练过程中实现了比Magtron+DeepSpeed zero-2将近８倍的训练效率。
+Aquila语言大模型是在中英文高质量语料基础上从０开始训练的，通过数据质量的控制、多种训练的优化方法，
+实现在更小的数据集、更短的训练时间，获得比其它开源模型更优的性能。
+也是首个支持中英双语知识、支持商用许可协议、符合国内数据合规需要的大规模开源语言模型
